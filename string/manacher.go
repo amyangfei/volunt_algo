@@ -11,7 +11,7 @@ func Min(a, b int) int {
 	}
 }
 
-func Manacher(s string) string {
+func Manacher(s string) (string, int, int) {
 	// prepare string
 	rs := []rune(s)
 	prep := []rune("$")
@@ -63,5 +63,6 @@ func Manacher(s string) string {
 			result = append(result, prep[i+mid])
 		}
 	}
-	return string(result)
+	start, length := (mid-maxp)/2, maxp-1
+	return string(result), start, length
 }

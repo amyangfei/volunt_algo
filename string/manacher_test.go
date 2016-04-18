@@ -4,34 +4,38 @@ import (
 	"testing"
 )
 
+func testManacherCase(t *testing.T, s string, expected string) {
+	cals, start, length := Manacher(s)
+	if cals != expected {
+		t.Errorf("err for '%s'", s)
+	}
+	if s[start:start+length] != expected {
+		t.Errorf("err for index or length")
+	}
+}
+
 func TestManacher(t *testing.T) {
-	test1 := "forgeeksskeegfor"
-	if Manacher(test1) != "geeksskeeg" {
-		t.Errorf("err for '%s'", test1)
-	}
+	s1 := "forgeeksskeegfor"
+	e1 := "geeksskeeg"
+	testManacherCase(t, s1, e1)
 
-	test2 := "abaaba"
-	if Manacher(test2) != "abaaba" {
-		t.Errorf("err for '%s'", test2)
-	}
+	s1 = "abaaba"
+	e1 = "abaaba"
+	testManacherCase(t, s1, e1)
 
-	test3 := "12212321"
-	if Manacher(test3) != "12321" {
-		t.Errorf("err for '%s'", test3)
-	}
+	s1 = "00"
+	e1 = "00"
+	testManacherCase(t, s1, e1)
 
-	test4 := "00"
-	if Manacher(test4) != "00" {
-		t.Errorf("err for '%s'", test4)
-	}
+	s1 = "012134"
+	e1 = "121"
+	testManacherCase(t, s1, e1)
 
-	test5 := "0"
-	if Manacher(test5) != "0" {
-		t.Errorf("err for '%s'", test5)
-	}
+	s1 = "0"
+	e1 = "0"
+	testManacherCase(t, s1, e1)
 
-	test6 := "11123321121"
-	if Manacher(test6) != "11233211" {
-		t.Errorf("err for '%s'", test6)
-	}
+	s1 = "11123321121"
+	e1 = "11233211"
+	testManacherCase(t, s1, e1)
 }
